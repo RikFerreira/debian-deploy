@@ -1,0 +1,4 @@
+#!/bin/sh
+
+vol="$(pactl list sinks | grep "Volume:" | awk '{print $5}')"
+echo "$vol"

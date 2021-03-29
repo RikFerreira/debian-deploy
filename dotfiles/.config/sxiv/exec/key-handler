@@ -1,0 +1,44 @@
+#!/bin/sh
+# Dependencies:
+#
+# External packages:
+# dunst
+# imagemagick
+# xclip
+# xwallpaper
+#
+# Scripts
+# $HOME/.local/bin/watermark
+
+rotate() {
+	degree="$1"
+	tr '\n' '\0' | xargs -0 realpath | sort | uniq | while read file; do
+		case "$(file -b -i "$file")" in
+		image/jpeg*)
+            jpegtran -rotate "$degree" -copy all -outfile "$file" "$file" ;;
+		*)
+            mogrify  -rotate "$degree" "$file" ;;
+		esac
+	done
+}
+
+while read file
+do
+    case "$1" in
+        "w")
+            xwallpaper --zoom "$file" &&
+                notify-send "Wallpaper changed." & ;;
+        "y")
+            readlink -f "$file" | tr -d '\n' | xclip -selection clipboard &&
+                notify-send "$(readlink -f "$file") copied to clipboard" & ;;
+        "d")
+            [ "$(echo -e "No\nYes" | dmenu -i -p "Really delete $file?: ")" = "Yes" ] &&
+                rm "$file" &&
+                notify-send "$file deleted!" & ;;
+        "m")
+            watermark "$file" "${file}_watermarked" "DEMONSTRAÇÃO" &&
+                readlink -f "${file}_watermarked" | tr -d '\n' | xclip -selection clipboard &&
+                notify-send "$(readlink -f "${file}_watermarked") copied to clipboard" & ;;
+    esac
+done
+

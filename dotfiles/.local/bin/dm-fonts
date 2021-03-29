@@ -1,0 +1,3 @@
+#!/bin/bash
+font=$(fc-list | awk -F ':' '{print $1}' | sort | dmenu -i -l 20 -p 'Font Viewer: ')
+display $font

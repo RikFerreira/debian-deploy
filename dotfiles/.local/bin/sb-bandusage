@@ -1,0 +1,19 @@
+#!/bin/sh
+# source: https://unix.stackexchange.com/questions/20965/how-should-i-determine-the-current-network-utilization
+
+dev=$1
+
+grep -q "^$dev:" /proc/net/dev || exec echo "$dev: no such device"
+
+read rx <"/sys/class/net/$dev/statistics/rx_bytes"
+read tx <"/sys/class/net/$dev/statistics/tx_bytes"
+
+sleep 1
+
+read newrx <"/sys/class/net/$dev/statistics/rx_bytes"
+read newtx <"/sys/class/net/$dev/statistics/tx_bytes"
+
+# convert bytes to kbit/s: bytes * 8 / 1000 => bytes / 125
+[ "$2" == "-c" ] &&
+    echo "$(((newrx-rx) / 1000)) $(((newtx-tx) / 1000))" ||
+    echo "$dev  {d: $(((newrx-rx) / 125)), u: $(((newtx-tx) / 125))}"

@@ -1,0 +1,8 @@
+#!/bin/bash
+option=$(echo -e "Lock\nReboot\nShutdown" | dmenu -i -l 3 -p "Power: ")
+
+[[ $option == "Lock" ]] && slock
+[[ $option == "Reboot" ]] && [[ "$(echo -e "No\nYes" | dmenu -i -p "Are you sure you want to $option?: ")" == "Yes" ]] && reboot
+[[ $option == "Shutdown" ]] && [[ "$(echo -e "No\nYes" | dmenu -i -p "Are you sure you want to $option?: ")" == "Yes" ]] && shutdown 0
+
+exit 0

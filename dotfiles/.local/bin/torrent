@@ -1,0 +1,31 @@
+#!/bin/sh
+
+pidof transmission-daemon > /dev/null || (transmission-daemon && notify-send "Starting transmission daemon...")
+
+main_option="$(echo -e "Add\nList\nStop\nWeb" | dmenu -i -p "Torrent management: ")"
+
+case $main_option in
+    "Add")
+        new_torrent="$(xclip -selection clipboard -o)"
+
+        [ "$(echo -e "No\nYes" | dmenu -i -p "Add $new_torrent?: ")" == "Yes" ] &&
+            (transmission-remote --add $new_torrent &&
+            notify-send "Torrent added to queue.")
+        ;;
+    "List")
+        torrent="$(transmission-remote -l | sed -e '$d' | dmenu -i -l 10 -p "Torrents: ")"
+
+        ([ -z $torrent ] || [ "$(echo "$torrent" | awk '{print $1}')" == "ID" ]) && exit 0
+
+        [ "$(echo -e "No\nYes" | dmenu -i -p "Delete it?: ")" == "Yes" ] &&
+            transmission-remote -t "$(echo "$torrent" | awk -F "\t" '{print $1}')" -rad &&
+            notify-send "$(echo "$torrent" | awk '{print $10}') deleted."
+        ;;
+    "Stop")
+        pkill transmission && notify-send "Transmission daemon stopped."
+        ;;
+    "Web")
+        xdg-open "http://localhost:9091"
+        ;;
+esac
+

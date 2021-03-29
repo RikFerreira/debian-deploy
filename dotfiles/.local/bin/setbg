@@ -1,0 +1,14 @@
+#!/bin/sh
+xwallpaper --zoom "$1" 2> /dev/null &&
+    exit 0
+
+dim=$(xdpyinfo | grep dimensions | awk '{print $2}')
+bg="$(xrdb -query | grep color0 | awk '{print $2}')"
+
+bgcolor="$(xrdb -query | grep color0 | awk '{print $2}')" &&
+    convert -size $dim xc:"$bgcolor" /tmp/colorbg.png &&
+    bg="/tmp/colorbg.png"
+
+xwallpaper --center "$bg" &&
+    rm /tmp/colorbg.png 2>/dev/null &&
+    exit 0 || exit 1

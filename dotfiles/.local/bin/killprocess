@@ -1,0 +1,12 @@
+#!/bin/bash
+process=$(ps -a -u $USER | awk '{print $1" "$4}' | tail -n +2 | dmenu -i -l 20 -p "Kill process: ")
+
+[[ ! -z $process ]] &&
+    answer=$(echo -e "No\nYes" | dmenu -i -p "You're about to kill $process. Are you sure?")
+
+[[ $answer == "Yes" ]] &&
+    pid=$(awk '{print $1}' <<< $process) &&
+    kill -9 $pid &&
+    notify-send "$process was killed!"
+
+exit 0

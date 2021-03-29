@@ -1,0 +1,20 @@
+#!/bin/sh
+
+export RSTUDIO_PANDOC="/usr/lib/rstudio/bin/pandoc"
+
+file="$(readlink -f "$1")"
+dir="${file%/*}"
+base="${file%.*}"
+extension="${file##*.}"
+
+case $extension in
+    [rR]md)
+        Rscript --vanilla -e "rmarkdown::render('$file', quiet = TRUE)"
+        ;;
+    tex)
+        [ "$(Rscript -e "cat(tinytex::is-tinytex())")" == "TRUE" ] &&
+            Rscript -e "tinytex::pdflatex('$file')" ||
+            pdflatex $file -o "$base.pdf"
+        ;;
+esac
+

@@ -1,0 +1,40 @@
+#!/bin/sh
+#
+# The algorithm for getting the brightness of the notify-send background color
+# is adapted from: https://youtu.be/notHBJp4zTY
+#
+# Dependencies:
+#
+# awk
+# dunst
+# xclip
+
+contrast () {
+    input_color="$1"
+
+    # Get separated RGB colors
+    red="${input_color:1:2}"
+    green="${input_color:3:2}"
+    blue="${input_color:5:2}"
+
+    # Convert from hex do dec
+    red="$((16#$red))"
+    green="$((16#$green))"
+    blue="$((16#$blue))"
+
+    # Compute the brightness
+    brightness="$(awk "BEGIN {printf \"%.0f\n\", sqrt((.241*$red)^2 + (.691*$green)^2 + (.068*$blue)^2)}")"
+
+    # Return black if brightness is greater than the threshold
+    [ $brightness -lt 127 ] && echo "#ffffff" || echo "#000000"
+}
+
+color="$(grabc)"
+foreground="$(contrast "$color")"
+
+echo $color
+echo $foreground
+
+echo "$color" |
+    xclip -selection clipboard &&
+    notify-send -h string:bgcolor:$color: -h string:fgcolor:$foreground " Color $color copied to clipboard."

@@ -1,0 +1,40 @@
+#!/bin/sh
+
+sudo pacman -Sy > /dev/null &
+    ( [ -z "$1" ] && notify-send -t 2000 --hint int:transient:1 "Updating database..." ||
+        exit 1 )
+
+wait
+
+[ -z "$1" ] && notify-send -t 5 "Database updated."
+
+packagelist="$(pacman -Qu | sed 's/.*\///')"
+
+n_packages="$(printf "$packagelist" | wc -l)"
+
+[ "$1" == "-c" ] && printf "$n_packages\n" && exit 0
+[ "$1" == "-l" ] && printf "$packagelist" && exit 0
+
+[ $n_packages -eq 0 ] && notify-send "The system is up-to-date." && exit 0
+
+option="$(echo -e "List\nUpdate all" | dmenu -i -p "$n_packages packages are waiting for updates: ")"
+
+case $option in
+    "List")
+        package="$(echo "$packagelist" | dmenu -i -l 10 -p "Packages waiting for update: ")"
+
+        [ ! -z "$package" ] &&
+        [ "$(echo -e "No\nYes" | dmenu -i -p "Update $package?: ")" == "Yes" ] &&
+            sudo pacman -S "$(echo "$package" | awk '{print $1}')" --noconfirm &&
+            notify-send "$package is up-to-date."
+        ;;
+    "Update all")
+            [ "$(echo -e "No\nYes" | dmenu -i -p "Are you sure you want to update?: ")" == "Yes" ] &&
+                sudo pacman -Syu --noconfirm &&
+                notify-send "$n_packages package updated. The system is up-to-date."
+        ;;
+    "*")
+        exit 0
+        ;;
+esac
+

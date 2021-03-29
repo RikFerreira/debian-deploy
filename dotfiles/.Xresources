@@ -1,0 +1,96 @@
+! __  __
+! \ \/ /_ __ ___  ___  ___  _   _ _ __ ___ ___  ___
+!  \  /| '__/ _ \/ __|/ _ \| | | | '__/ __/ _ \/ __|
+!  /  \| | |  __/\__ \ (_) | |_| | | | (_|  __/\__ \
+! /_/\_\_|  \___||___/\___/ \__,_|_|  \___\___||___/
+
+*.alpha:    0.9
+*.font:     Fira Code:size=10
+
+/* name     dark    light   */
+/* black    0       8       */
+/* red      1       9       */
+/* green    2       10      */
+/* yellow   3       11      */
+/* blue     4       12      */
+/* purple   5       13      */
+/* cyan     6       14      */
+/* white    7       15      */
+
+! GRUVBOX
+#define black           #1d2021
+#define red             #cc241d
+#define green           #98971a
+#define yellow          #d79921
+#define blue            #458588
+#define purple          #b16286
+#define cyan            #689d6a
+#define white           #a89984
+#define light_black     #928374
+#define light_red       #fb4934
+#define light_green     #b8bb26
+#define light_yellow    #fabd2f
+#define light_blue      #83a598
+#define light_purple    #d3869b
+#define light_cyan      #8ec07c
+#define light_white     #ebdbb2
+
+*.color0:               black
+*.color1:               red
+*.color2:               green
+*.color3:               yellow
+*.color4:               blue
+*.color5:               purple
+*.color6:               cyan
+*.color7:               white
+*.color8:               light_black
+*.color9:               light_red
+*.color10:              light_green
+*.color11:              light_yellow
+*.color12:              light_blue
+*.color13:              light_purple
+*.color14:              light_cyan
+*.color15:              light_white
+*.color256:             #1d2021
+*.color257:             #ebdbb2
+! GRUVBOX
+
+dwm.normbgcolor:        #282828
+dwm.normbordercolor:    #282828
+dwm.normfgcolor:        #ebdbb2
+dwm.selbgcolor:         #458588
+dwm.selbordercolor:     #458588
+dwm.selfgcolor:         #ebdbb2
+dwm.borderpx:           3
+dwm.snap:               32
+dwm.showbar:            1
+dwm.topbar:             1
+dwm.nmaster:            1
+dwm.resizehints:        0
+dwm.mfact:              0.5
+
+dmenu.background:       #282828
+dmenu.foreground:       #ebdbb2
+dmenu.selbackground:    #458588
+dmenu.selforeground:    #ebdbb2
+
+!! brogrammer
+/* *.foreground:  #d6dbe5 */
+/* *.background:  #131313 */
+/* *.color0:      #1f1f1f */
+/* *.color1:      #f81118 */
+/* *.color2:      #2dc55e */
+/* *.color3:      #ecba0f */
+/* *.color4:      #2a84d2 */
+/* *.color5:      #4e5ab7 */
+/* *.color6:      #1081d6 */
+/* *.color7:      #d6dbe5 */
+/* *.color8:      #d6dbe5 */
+/* *.color9:      #de352e */
+/* *.color10:     #1dd361 */
+/* *.color11:     #f3bd09 */
+/* *.color12:     #1081d6 */
+/* *.color13:     #5350b9 */
+/* *.color14:     #0f7ddb */
+/* *.color15:     #ffffff */
+/* *.colorBD:     #d6dbe5 */

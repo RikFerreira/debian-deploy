@@ -1,0 +1,90 @@
+snippet >>
+	 %>% ${0}
+
+snippet header
+	---
+	title: ${1}
+	author: ${2}
+	date: "\`r Sys.Date()\`"
+	output: ${3}_document
+	---
+
+	${0}
+
+snippet header-abnt
+	---
+	title: ${1}
+	author: ${2}
+	date: "\`r Sys.Date()\`"
+	output:
+	    pdf_document:
+	        toc: true
+	geometry: "top=3cm,right=2cm,bottom=2cm,left=3cm"
+	mainfont: Times New Roman
+	fontsize: 12pt
+	indent: true
+	header-includes:
+	    \\usepackage[brazil]{babel}
+	    \\usepackage[onehalfspacing]{setspace}
+	    \\usepackage{indentfirst}
+	bibliography: "\`r paste0(Sys.getenv('BIB'), '/bib/${3}')\`"
+	csl: "\`r paste0(Sys.getenv('BIB'), '/csl/associacao-brasileira-de-normas-tecnicas.csl')\`"
+	abstract:
+	---
+
+	${0}
+
+snippet header-docx
+	---
+	title: ${1}
+	author: ${2}
+	output:
+	    word_document:
+	        reference_docx: word-abnt.docx
+	bibliography: "\`r paste0(Sys.getenv('BIB'), '/bib/${3}')\`"
+	csl: "\`r paste0(Sys.getenv('BIB'), '/csl/associacao-brasileira-de-normas-tecnicas.csl')\`"
+	abstract: __Resumo: __
+	---
+
+	${0}
+
+snippet setup
+	\`\`\`{r setup, include=FALSE}
+	knitr::opts_chunk$set(message = FALSE, warning = FALSE, echo = FALSE, eval = TRUE)
+	\`\`\`
+
+	${0}
+
+snippet rcode
+	\`\`\`{r}
+	${1}
+	\`\`\`
+
+	${0}
+
+snippet image
+	\`\`\`{r ${1}, fig.width=10, fig.height=5}
+	knitr::include_graphics("${2}")
+	\`\`\`
+
+	${0}
+
+snippet table
+	\`\`\`{r}
+	kableExtra::kbl()
+	\`\`\`
+
+snippet bashcode
+	\`\`\`{bash}
+	${1}
+	\`\`\`
+
+	${0}
+
+snippet pythoncode
+	\`\`\`{python}
+	${1}
+	\`\`\`
+
+	${0}
+

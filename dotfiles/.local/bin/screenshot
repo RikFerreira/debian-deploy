@@ -1,0 +1,17 @@
+#!/bin/sh
+
+option=$(echo -e "Select\nFull" | dmenu -i -p "Screenshot: ")
+dir="$HOME/images/screenshots"
+name=$(timedatectl | grep "Local time" | awk '{print "SCREENSHOT-"$4"-"$5".png"}')
+
+[ ! -d "$HOME/images/screenshots" ] && mkdir "$HOME/images/screenshots"
+
+case $option in
+    "Select")
+        import "$dir/$name" &&
+            notify-send "Screenshot saved in $dir." ;;
+    "Full")
+        sleep .1 && import -window root "$dir/$name" &&
+            notify-send "Screenshot saved in $dir."  ;;
+esac
+
