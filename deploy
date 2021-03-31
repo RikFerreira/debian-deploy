@@ -27,18 +27,14 @@ gitmakeinstall() {
     cd $tempdir
 }
 
-installaurhelper() {
-    paru="https://aur.archlinux.org/paru.git"
-    gitrepo="$(echo $paru | sed -e 's/^.*\///' -e 's/\.git$//')"
-    git clone $paru $tempdir/$gitrepo
-    cd $tempdir/$gitrepo
-    makepkg -si
+debinstall() {
     cd $tempdir
+    deb="$(echo $1 | sed 's/.*\///g')"
+    wget $1
+    sudo dpkg -i $deb
 }
 
 if [ "$1" == "-i" ]; then
-    [ ! $(command -v paru) ] && installaurhelper
-
     while IFS="," read -r source package comment
     do
         printf "\n"
@@ -46,11 +42,11 @@ if [ "$1" == "-i" ]; then
         printf "\n"
 
         case $source in
-            ARC)
-                sudo pacman -S $package --noconfirm --color always
+            APT)
+                sudo apt install -y $package
                 ;;
-            AUR)
-                paru -S $package --skipreview --noconfirm
+            DEB)
+                debinstall $package
                 ;;
             GIT)
                 gitmakeinstall $package

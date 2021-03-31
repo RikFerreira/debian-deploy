@@ -1,63 +1,55 @@
-ARC,crda,Central Regulatory Domain Agent for wireless networks
-ARC,cronie,Cron jobs daemon
-ARC,curl,Download text files from the Web
-ARC,dunst,Notification daemon
-ARC,ffmpeg,Video conversor
-ARC,firefox,Web browser
-ARC,gdal,Libraries for geospatial data manipulation
-ARC,git,Version control software
-ARC,htop,System monitor
-ARC,imagemagick,Image processor
-ARC,iw,Wireless network configuration
-ARC,libgit2,Dependency for usethis R package
-ARC,libnotify,Allows desktop notifications
-ARC,libxft,DWM dependency
-ARC,libxinerama,DWM dependency
-ARC,libxrandr,DWM dependency
-ARC,man-db,Man pages
-ARC,mediainfo,Get info from image and video files
-ARC,mlocate,Quick alternative to find
-ARC,mpv,Video player
-ARC,neovim,Text editor
-ARC,networkmanager,Network manager
-ARC,numlockx,Activate numlock
-ARC,pavucontrol,Audio manager
-ARC,pulseaudio,A sound server alternative to ALSA
-ARC,python-pip,Install python packages
-ARC,r,Programming language for statistics
-ARC,sxiv,Image viewer
-ARC,telegram-desktop,Telegram client
-ARC,tk,Dependency for usethis R package
-ARC,transmission-cli,Command line interface for Transmission
-ARC,tree,Tree style visualization for local files
-ARC,ttf-fira-code,Fira Code font
-ARC,ttf-fira-sans,Fira Sans font
-ARC,ttf-font-awesome,Font Awesome font
-ARC,wget,Download files from the Web
-ARC,xclip,Interface to X11 clipboard
-ARC,xcompmgr,Window compositor
-ARC,xorg-server,X.Org graphical server
-ARC,xorg-xdpyinfo,Display information for X
-ARC,xorg-xev,Print X events
-ARC,xorg-xinit,X.Org initialization
-ARC,xorg-xrandr,X11 RandR extension library
-ARC,xorg-xset,User preference utility for X
-ARC,xsettingsd,Provides settings to X11 apps
-ARC,xwallpaper,Changes desktop wallpaper
-ARC,zathura,Document viewer
-ARC,zathura-pdf-poppler,Engine for viewing PDF with Zathura
-ARC,texlive-most,LaTeX distribution
-ARC,biber,Bibliography manager
-ARC,pandoc,Universal document conversor
-ARC,gcc-fortran,R package sf dependency
-ARC,libreoffice-still,Libre Office
-ARC,libreoffice-still-pt-br,Language pack for Libre Office
-AUR,tllocalmgr-git,Package manager for TeX
-AUR,grabc,Grab color
-AUR,rstudio-desktop-bin,R IDE
-AUR,sc-im,Spreadsheets in the terminal
-AUR,ttf-ms-fonts,ABNT fonts
-AUR,udunits,Dependency for R package sf
+APT,build-essential,Make packages
+APT,git,Version control software
+APT,curl,Download text files from the web
+APT,xserver-xorg-core,X.Org graphical server
+APT,xinit,X.Org initialization
+APT,libx11-dev,DWM dependency
+APT,libxft-dev,DWM dependency
+APT,libxinerama-dev,DWM dependency
+APT,libharfbuzz-dev,ST dependency
+APT,libxrandr-dev,DWM dependency
+APT,libimlib2-dev,Slock dependency
+APT,firefox-esr,Web browser
+APT,neovim,Text editor
+APT,fonts-firacode,Fira Code font
+APT,fonts-font-awesome,Font Awesome
+APT,xcompmgr,Simple X compositor
+APT,dunst,Notification daemon
+APT,libnotify-bin,Allows desktop notifications
+APT,xwallpaper,Changes desktop wallpaper
+APT,ffmpeg,Video conversor
+APT,htop,System monitor
+APT,imagemagick,Image processor
+APT,mpv,Video player
+APT,mlocate,Quick alternative to find
+APT,pavucontrol,Audio manager
+APT,pulseaudio,A sound server alternative to ALSA
+APT,tree,Tree style visualization for local files
+APT,libreoffice-writer,Libre Office Writer
+APT,libreoffice-calc,Libre Office Calc
+APT,libreoffice-l10n-pt-br,Language pack for Libre Office
+APT,mediainfo,Get info from image and video files
+APT,r-base,Programming language for statistics
+APT,r-cran-tidyverse,Tidyverse metapackage
+APT,r-cran-sf,R package for spatial data manipulation
+APT,ttf-mscore-fonts,Arial and Times New Roman for Debian (contrib repository)
+APT,gdal,Libraries for geospatial data manipulation
+APT,sxiv,Image viewer
+APT,numlockx,Activate numlock
+APT,telegram-desktop,Telegram client
+APT,transmission-cli,Command line interface for Transmission
+APT,python-pip,Install python packages
+APT,x11-utils,Utilities for X11
+APT,xsettingsd,X11 settings
+APT,zathura,Document viewer
+APT,zathura-pdf-poppler,Engine for viewing PDF with Zathura
+APT,texlive,LaTeX distribution
+APT,pandoc,Universal document conversor
+APT,biber,Bibliography manager
+APT,wget,Download files from the web
+APT,iw,Wireless network configuration
+APT,networ-kmanager,Network manager
+DEB,https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.4.1106-amd64.deb,R IDE
 GIT,https://github.com/rikferreira/dwm.git,Dynamic Window Manager
 GIT,https://github.com/rikferreira/dmenu.git,Menu prompt
 GIT,https://github.com/rikferreira/st.git,Simple terminal
