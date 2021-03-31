@@ -31,32 +31,34 @@ debinstall() {
     cd $tempdir
     deb="$(echo $1 | sed 's/.*\///g')"
     wget $1
-    sudo dpkg -i $deb
+    sudo apt install -f $(readlink -f $deb)
 }
 
-if [ "$1" == "-i" ]; then
-    while IFS="," read -r source package comment
-    do
-        printf "\n"
-        printf "${BLUE}${BOLD}$package: ${YELLOW}${BOLD}$comment\n"
-        printf "\n"
+sudo apt install -f &&
+    sudo apt update &&
+    sudo apt upgrade
 
-        case $source in
-            APT)
-                sudo apt install -y $package
-                ;;
-            DEB)
-                debinstall $package
-                ;;
-            GIT)
-                gitmakeinstall $package
-                ;;
-            *)
-                printf "Source for $package not recognized!\n"
-                ;;
-        esac
-    done < <(sort -t "," -k 1 "$workingdir/package.list")
-fi
+while IFS="," read -r source package comment
+do
+    printf "\n"
+    printf "${BLUE}${BOLD}$package: ${YELLOW}${BOLD}$comment${NOCOLOR}\n"
+    printf "\n"
+
+    case $source in
+        APT)
+            sudo apt install -y $package
+            ;;
+        DEB)
+            debinstall $package
+            ;;
+        GIT)
+            gitmakeinstall $package
+            ;;
+        *)
+            printf "Source for $package not recognized!\n"
+            ;;
+    esac
+done < "$workingdir/package.list"
 
 path="$workingdir/dotfiles"
 cd $workingdir
@@ -71,5 +73,7 @@ done
 for file in $files; do
     ln -sf "$path/$file" "$HOME/$file"
 done
+
+sudo apt autoremove
 
 rm -rf $tempdir

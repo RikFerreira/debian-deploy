@@ -48,7 +48,7 @@ APT,pandoc,Universal document conversor
 APT,biber,Bibliography manager
 APT,wget,Download files from the web
 APT,iw,Wireless network configuration
-APT,networ-kmanager,Network manager
+APT,network-manager,Network manager
 DEB,https://download1.rstudio.org/desktop/bionic/amd64/rstudio-1.4.1106-amd64.deb,R IDE
 GIT,https://github.com/rikferreira/dwm.git,Dynamic Window Manager
 GIT,https://github.com/rikferreira/dmenu.git,Menu prompt
